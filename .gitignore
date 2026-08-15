@@ -1,0 +1,14 @@
+# mkdocs build 결과물 (배포는 gh-pages 브랜치로 나가므로 커밋하지 않는다)
+site/
+
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# secrets
+.env
+
+# OMC 운영 상태 (worktree 로컬 전용)
+.omc/
