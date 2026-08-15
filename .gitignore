@@ -2,6 +2,11 @@
 dist/
 .astro/
 
+# tests — 픽스처 빌드 산출물과 playwright 결과
+.test-dist/
+test-results/
+playwright-report/
+
 # deps
 node_modules/
 

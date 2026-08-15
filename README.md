@@ -24,6 +24,18 @@ npm run build     # dist/ 에 정적 파일 생성
 npm run preview   # 빌드 결과를 로컬에서 확인
 ```
 
+## 테스트
+
+```bash
+npm test          # unit + 빌드 산출물(vitest) → e2e(playwright) 순서
+npm run test:unit
+npm run test:e2e
+```
+
+테스트는 `tests/fixtures/posts/` 의 픽스처 글만 읽어 `.test-dist/` 에 빌드한다.
+실제 글(`src/content/posts/`)과 `dist/` 는 건드리지 않는다.
+처음 한 번은 `npx playwright install chromium` 이 필요하다.
+
 ## 글 쓰는 법
 
 `src/content/posts/` 에 마크다운 파일을 하나 만든다. 그게 전부다.
