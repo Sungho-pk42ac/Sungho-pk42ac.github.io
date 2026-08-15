@@ -1,40 +1,73 @@
-# boxfish
+# pk42ac
 
-LLM 공부 정리본. MkDocs Material 문서 사이트로 관리한다.
+LLM 공부하며 남기는 기록. [velog](https://velog.io) 디자인을 따르는 Astro 정적 블로그.
 
 ## 로컬에서 보기
 
 ```bash
-pip install -r requirements.txt
-mkdocs serve
+npm install
+npm run dev
 ```
 
-`http://127.0.0.1:8000` 접속. 파일을 저장하면 브라우저가 자동으로 새로고침된다.
-
-## 배포
+Astro 7부터 개발 서버가 백그라운드로 돈다. 상태 확인과 종료는 이렇게 한다.
 
 ```bash
-mkdocs gh-deploy
+npx astro dev status
+npx astro dev logs
+npx astro dev stop
 ```
 
-빌드해서 `gh-pages` 브랜치에 푸시까지 한 번에 한다. GitHub 리모트가 연결되어 있어야 하고,
-레포 Settings → Pages에서 소스를 `gh-pages` 브랜치로 지정하면 사이트가 뜬다.
+## 빌드
 
-## 챕터 추가하는 법
-
-1. `_template.md`를 `docs/06-something.md`로 복사
-2. `mkdocs.yml`의 `nav:`에 한 줄 추가
-
-```yaml
-  - "6. 제목": 06-something.md
+```bash
+npm run build     # dist/ 에 정적 파일 생성
+npm run preview   # 빌드 결과를 로컬에서 확인
 ```
 
-순서를 바꾸고 싶으면 파일명은 그대로 두고 `nav:` 줄만 위아래로 옮긴다.
+## 글 쓰는 법
 
-## 작성 규칙
+`src/content/posts/` 에 마크다운 파일을 하나 만든다. 그게 전부다.
 
-- 챕터 하나 = `docs/` 안의 md 하나. 섹션은 **한 줄 요약 / 핵심 / 헷갈렸던 것** 3개 고정.
-- `헷갈렸던 것`을 비워두지 않는다. 6개월 뒤에 제일 값나가는 섹션이다.
-- 짧은 코드는 md 코드블록에 인라인으로 넣는다(복사 버튼이 자동으로 붙는다).
-- 실제로 돌리는 스크립트가 생기면 그때 `examples/04-tokenizer.py`처럼 챕터 번호를 맞춰 추가한다.
-- 안 돌아가는 코드는 커밋하지 않는다.
+```markdown
+---
+title: 토크나이저가 한글을 쪼개는 방식
+date: 2026-08-20
+description: 목록과 검색에 쓰이는 한 줄 요약
+---
+
+본문…
+```
+
+주소는 파일명에서 나온다 — `tokenizer-korean.md` → `/posts/tokenizer-korean`.
+날짜를 주소에 넣지 않으므로 나중에 글을 고쳐도 링크가 그대로다.
+
+## 구조
+
+```
+src/
+├─ content/posts/     글 (마크다운)
+├─ content.config.ts  글 스키마
+├─ pages/
+│  ├─ index.astro     홈 (글 목록)
+│  └─ posts/[id].astro  개별 글
+├─ layouts/           공통 레이아웃
+└─ styles/
+   ├─ velog.css       디자인 토큰 (팔레트 + 역할 토큰)
+   └─ markdown.css    본문·코드블록 스타일
+```
+
+## 디자인
+
+velog의 오픈소스 저장소([velog-io/velog](https://github.com/velog-io/velog), MIT)의
+`apps/web/src/styles/global.css` 에서 토큰 체계를 그대로 가져왔다.
+
+- 원시 팔레트(`--teal0~9`, `--gray0~9`, `--red0~9`)는 `:root` 에
+- 역할 토큰(`--bg-page1`, `--text1`, `--primary1` 등)은 `[data-theme]` 별로
+
+색을 직접 쓰지 않고 역할에 매핑해두면 테마 전환이 값 교체로 끝난다.
+다크 테마에서는 티얼이 밝아지고(`#12b886` → `#96f2d7`) 버튼 글자색이 반전된다.
+
+지켜야 할 것: 그림자 없음(값 대비로만 층 구분), 티얼은 액션에만,
+빨강은 파괴적 동작 전용, 순검정 텍스트 금지.
+
+자세한 명세는 [DESIGN.md](DESIGN.md).
