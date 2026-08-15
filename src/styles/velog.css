@@ -1,0 +1,266 @@
+/* velog 디자인 토큰
+ *
+ * 출처: velog-io/velog (MIT) — apps/web/src/styles/global.css
+ * 구조: 1층 원시 팔레트(:root) + 2층 역할 토큰([data-theme])
+ *       색을 직접 쓰지 않고 역할에 매핑해두면 테마 전환이 값 교체로 끝난다.
+ *
+ * 원본의 --eal7 오타는 --teal7로 교정했다.
+ */
+
+:root {
+  --element-height-md: 40px;
+  --element-height-sm: 36px;
+  --border-radius-md: 6px;
+
+  /* teal */
+  --teal0: #f3fffb;
+  --teal1: #c3fae8;
+  --teal2: #96f2d7;
+  --teal3: #63e6be;
+  --teal4: #38d9a9;
+  --teal5: #20c997;
+  --teal6: #12b886;
+  --teal7: #0ca678; /* 원본은 --eal7 (오타) */
+  --teal8: #099268;
+  --teal9: #087f5b;
+
+  /* gray */
+  --gray0: #f8f9fa;
+  --gray1: #f1f3f5;
+  --gray2: #e9ecef;
+  --gray3: #dee2e6;
+  --gray4: #ced4da;
+  --gray5: #adb5bd;
+  --gray6: #868e96;
+  --gray7: #495057;
+  --gray8: #343a40;
+  --gray9: #212529;
+
+  /* red — 파괴적 동작 전용 */
+  --red0: #fff5f5;
+  --red1: #ffe3e3;
+  --red2: #ffc9c9;
+  --red3: #ffa8a8;
+  --red4: #ff8787;
+  --red5: #ff6b6b;
+  --red6: #fa5252;
+  --red7: #f03e3e;
+  --red8: #e03131;
+  --red9: #c92a2a;
+
+  /* 본문 컬럼 폭 — 원본 global.css에는 없다.
+   * MarkdownRender의 iframe 기본 폭이 768px인 것에서 역산했다. 슬라이스 6에서 검수. */
+  --content-width: 768px;
+}
+
+[data-theme='light'] {
+  --bg-page1: #f8f9fa;
+  --bg-page2: #ffffff;
+  --bg-element1: #ffffff;
+  --bg-element2: #f8f9fa;
+  --bg-element3: #e9ecef;
+  --bg-element4: #dee2e6;
+  --bg-element5: #212529;
+  --bg-element6: #343a40;
+  --bg-element7: #fafafa;
+  --bg-element8: #fbfdfc;
+  --bg-invert: #1e1e1e;
+  --bg-inline-code: #e9ecef;
+  --bg-tag: #f8f9fa;
+
+  --text1: #212529;
+  --text2: #495057;
+  --text3: #868e96;
+  --text4: #ced4da;
+
+  --border1: #343a40;
+  --border2: #adb5bd;
+  --border3: #dee2e6;
+  --border4: #f1f3f5;
+
+  --primary1: #12b886;
+  --primary2: #20c997;
+  --destructive1: #ff6b6b;
+  --destructive2: #ff8787;
+  --button-text: #ffffff;
+
+  --slight-layer: rgba(0, 0, 0, 0.05);
+  --opaque-layer: rgba(249, 249, 249, 0.85);
+
+  --prism-bg: #fbfcfd;
+  --prism-default-text: #24292e;
+  --prism-selection-bg: rgba(0, 0, 0, 0.15);
+  --prism-code-block-bg: #fbfcfd;
+  --prism-code-1: #969896;
+  --prism-code-2: #24292e;
+  --prism-code-3: #a626a4;
+  --prism-code-4: #63a35c;
+  --prism-code-5: #0184bc;
+  --prism-code-6: #50a14f;
+  --prism-code-7: #a626a4;
+  --prism-code-8: #005cc5;
+  --prism-code-9: #a626a4;
+  --prism-line-number: #585c63;
+}
+
+[data-theme='dark'] {
+  --bg-page1: #121212;
+  --bg-page2: #121212;
+  --bg-element1: #1e1e1e;
+  --bg-element2: #1e1e1e;
+  --bg-element3: #252525;
+  --bg-element4: #2e2e2e;
+  --bg-element5: #f1f3f5;
+  --bg-element6: #f8f9fa;
+  --bg-element7: #1b1b1b;
+  --bg-element8: #0c0c0c;
+  --bg-invert: #ffffff;
+  --bg-inline-code: #363636;
+  --bg-tag: #252525;
+
+  --text1: #ececec;
+  --text2: #d9d9d9;
+  --text3: #acacac;
+  --text4: #595959;
+
+  --border1: #e0e0e0;
+  --border2: #a0a0a0;
+  --border3: #4d4d4d;
+  --border4: #2a2a2a;
+
+  /* 다크에서 티얼이 밝아지고 버튼 글자색이 반전된다.
+   * 라이트 값을 그대로 쓰면 대비가 무너진다. */
+  --primary1: #96f2d7;
+  --primary2: #63e6be;
+  --destructive1: #ffc9c9;
+  --destructive2: #ffa8a8;
+  --button-text: #121212;
+
+  --slight-layer: rgba(255, 255, 255, 0.1);
+  --opaque-layer: rgba(0, 0, 0, 0.85);
+
+  --prism-bg: #1e1e1e;
+  --prism-default-text: #e0e6f1;
+  --prism-selection-bg: #383e49;
+  --prism-code-block-bg: #1e1e1e;
+  --prism-code-1: #7c858d;
+  --prism-code-2: #abb2bf;
+  --prism-code-3: #e06c75;
+  --prism-code-4: #d19a66;
+  --prism-code-5: #98c379;
+  --prism-code-6: #56b6c2;
+  --prism-code-7: #c678dd;
+  --prism-code-8: #61afef;
+  --prism-code-9: #c678dd;
+  --prism-line-number: #5c6370;
+}
+
+/* ── base (원본 global.css 그대로) ───────────────────────── */
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  /* 스크롤바 유무로 인한 레이아웃 시프트 방지 */
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page1);
+  color: var(--text1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Apple SD Gothic Neo',
+    'Malgun Gothic', '맑은 고딕', 나눔고딕, 'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR',
+    arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+img {
+  object-fit: cover;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+  user-select: none;
+}
+
+/* ── 레이아웃 ─────────────────────────────────────────────
+ * 원본 global.css에 없는 부분. 슬라이스 6(디자인 검수)에서 대조 대상. */
+
+.site-header {
+  background: var(--bg-page2);
+  border-bottom: 1px solid var(--border4);
+}
+
+.site-header__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text1);
+}
+
+.site-main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 3rem 1rem 6rem;
+}
+
+/* ── 글 ──────────────────────────────────────────────── */
+
+.post__title {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--text1);
+  word-break: keep-all;
+}
+
+.post__date {
+  margin: 1.5rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text3);
+}
+
+.post__body {
+  margin-top: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .post__title {
+    font-size: 1.75rem;
+  }
+  .site-main {
+    padding: 2rem 1rem 4rem;
+  }
+}

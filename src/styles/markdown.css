@@ -1,0 +1,221 @@
+/* 본문(마크다운) 스타일
+ *
+ * 출처: velog-io/velog (MIT) — apps/web/src/components/MarkdownRender/MarkdownRender.module.css
+ * pre / img / table / Prism 토큰 매핑은 원본 값을 그대로 옮겼다.
+ * 제목·문단 타이포는 원본 Typography 컴포넌트를 아직 대조하지 않았으므로
+ * 절제된 기본값을 두고 슬라이스 6(디자인 검수)에서 확인한다.
+ */
+
+.markdown-body {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text1);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.markdown-body > *:first-child {
+  margin-top: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  margin: 2.5rem 0 1rem;
+  line-height: 1.4;
+  font-weight: 800;
+  color: var(--text1);
+}
+
+.markdown-body h1 {
+  font-size: 2rem;
+}
+.markdown-body h2 {
+  font-size: 1.5rem;
+}
+.markdown-body h3 {
+  font-size: 1.25rem;
+}
+.markdown-body h4 {
+  font-size: 1.125rem;
+}
+
+.markdown-body p {
+  margin: 1.25rem 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.markdown-body li {
+  margin: 0.4rem 0;
+}
+
+.markdown-body a {
+  color: var(--primary1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-body blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  border-left: 4px solid var(--border3);
+  color: var(--text2);
+}
+
+.markdown-body hr {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid var(--border3);
+}
+
+/* 인라인 코드 — 언어 클래스가 없는 마크다운 인라인 코드용 */
+.markdown-body :not(pre) > code {
+  background: var(--bg-inline-code);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* 이미지 (원본 값) */
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 표 (원본 값) */
+.markdown-body table {
+  min-width: 40%;
+  max-width: 100%;
+  border: 1px solid var(--border2);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.markdown-body thead > tr > th {
+  border-bottom: 4px solid var(--border2);
+}
+.markdown-body th,
+.markdown-body td {
+  word-break: break-word;
+  padding: 0.5rem;
+}
+.markdown-body td + td,
+.markdown-body th + th {
+  border-left: 1px solid var(--border2);
+}
+.markdown-body tr:nth-child(even) {
+  background: var(--bg-element2);
+}
+.markdown-body tr:nth-child(odd) {
+  background: var(--bg-page1);
+}
+
+/* ── 코드블록 (원본 값) ──────────────────────────────── */
+
+.markdown-body pre {
+  font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+  padding: 1rem;
+  border-radius: 4px;
+  line-height: 1.5;
+  overflow-x: auto;
+  letter-spacing: 0px;
+  background: var(--prism-bg);
+}
+
+@media screen and (max-width: 768px) {
+  .markdown-body pre {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}
+
+.markdown-body code[class*='language-'],
+.markdown-body pre[class*='language-'] {
+  color: var(--prism-default-text);
+  background: none;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+  hyphens: none;
+}
+
+.markdown-body pre[class*='language-'] {
+  background: var(--prism-code-block-bg);
+}
+
+.markdown-body pre[class*='language-']::selection,
+.markdown-body pre[class*='language-'] ::selection,
+.markdown-body code[class*='language-']::selection,
+.markdown-body code[class*='language-'] ::selection {
+  text-shadow: none;
+  background: var(--prism-selection-bg);
+}
+
+/* Prism 토큰 → 역할 변수 매핑 (원본 atom-one 테마) */
+.markdown-body .token.comment,
+.markdown-body .token.prolog,
+.markdown-body .token.doctype,
+.markdown-body .token.cdata {
+  color: var(--prism-code-1);
+}
+.markdown-body .token.punctuation {
+  color: var(--prism-code-2);
+}
+.markdown-body .token.selector,
+.markdown-body .token.tag {
+  color: var(--prism-code-3);
+}
+.markdown-body .token.property,
+.markdown-body .token.boolean,
+.markdown-body .token.number,
+.markdown-body .token.constant,
+.markdown-body .token.symbol,
+.markdown-body .token.attr-name,
+.markdown-body .token.deleted {
+  color: var(--prism-code-4);
+}
+.markdown-body .token.string,
+.markdown-body .token.char,
+.markdown-body .token.attr-value,
+.markdown-body .token.builtin,
+.markdown-body .token.inserted {
+  color: var(--prism-code-6);
+}
+.markdown-body .token.operator,
+.markdown-body .token.entity,
+.markdown-body .token.url,
+.markdown-body .language-css .token.string,
+.markdown-body .style .token.string {
+  color: var(--prism-code-5);
+}
+.markdown-body .token.atrule,
+.markdown-body .token.keyword {
+  color: var(--prism-code-7);
+}
+.markdown-body .token.function {
+  color: var(--prism-code-8);
+}
+.markdown-body .token.regex,
+.markdown-body .token.important,
+.markdown-body .token.variable {
+  color: var(--prism-code-9);
+}
+.markdown-body .token.important,
+.markdown-body .token.bold {
+  font-weight: bold;
+}
+.markdown-body .token.italic {
+  font-style: italic;
+}

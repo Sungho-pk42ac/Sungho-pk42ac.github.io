@@ -1,0 +1,21 @@
+---
+// 임시 목록. 카드·썸네일·페이지네이션이 붙은 진짜 홈은 #2에서 이 파일을 대체한다.
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+---
+
+<BaseLayout title="boxfish">
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/posts/${post.id}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
