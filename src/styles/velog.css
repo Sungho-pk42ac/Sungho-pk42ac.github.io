@@ -229,6 +229,19 @@ button {
   color: var(--text1);
 }
 
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.site-nav > a {
+  font-size: 0.9375rem;
+  color: var(--text2);
+}
+.site-nav > a:hover {
+  color: var(--text1);
+}
+
 /* 테마 토글 — 아이콘 버튼. 현재 테마와 반대 아이콘을 보여준다 */
 .theme-toggle {
   display: inline-flex;
@@ -358,6 +371,49 @@ button {
   color: var(--button-text);
   font-weight: 700;
 }
+/* ── 목록형 페이지 공통 제목 (아카이브 등) ──────────────── */
+.page-title {
+  margin: 0 0 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text1);
+}
+
+/* ── 아카이브 ──────────────────────────────────────────── */
+.archive__group + .archive__group {
+  margin-top: 2.5rem;
+}
+.archive__month {
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text2);
+}
+.archive__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.archive__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border4);
+}
+.archive__list a {
+  color: var(--text1);
+  word-break: keep-all;
+}
+.archive__list a:hover {
+  text-decoration: underline;
+}
+.archive__list time {
+  flex: none;
+  font-size: 0.875rem;
+  color: var(--text3);
+}
+
 /* ── 홈 글 목록 ────────────────────────────────────────
  * velog FlatPostCard 계열: 카드끼리 구분선, 그림자 없음. 썸네일은 있을 때만 위에. */
 

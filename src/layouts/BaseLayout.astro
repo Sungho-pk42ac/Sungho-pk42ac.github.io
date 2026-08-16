@@ -28,7 +28,10 @@ const { title, description } = Astro.props
     <header class="site-header">
       <div class="site-header__inner">
         <a class="site-logo" href="/">pk42ac</a>
-        <ThemeToggle />
+        <nav class="site-nav" aria-label="사이트">
+          <a href="/archive/">아카이브</a>
+          <ThemeToggle />
+        </nav>
       </div>
     </header>
     <main class="site-main">

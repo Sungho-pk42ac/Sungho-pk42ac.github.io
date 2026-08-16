@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { groupByYearMonth } from '../lib/archive'
+import { formatDate, getPublishedPosts } from '../lib/posts'
+
+const groups = groupByYearMonth(await getPublishedPosts())
+---
+
+<BaseLayout title="아카이브 — pk42ac" description="연·월별 전체 글 목록">
+  <h1 class="page-title">아카이브</h1>
+  <div class="archive">
+    {
+      groups.map(({ year, month, posts }) => (
+        <section class="archive__group">
+          <h2 class="archive__month">
+            {year}년 {month}월 ({posts.length})
+          </h2>
+          <ul class="archive__list">
+            {posts.map((post) => (
+              <li>
+                <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+                <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>
