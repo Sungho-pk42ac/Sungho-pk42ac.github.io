@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Pagination from '../components/Pagination.astro'
+import PostCard from '../components/PostCard.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { getPublishedPosts } from '../lib/posts'
+
+// 홈 = 시간순 글 목록. /, /2/, /3/ ... 로 페이지가 나뉜다.
+export const getStaticPaths = (async ({ paginate }) => {
+  return paginate(await getPublishedPosts(), { pageSize: 10 })
+}) satisfies GetStaticPaths
+
+const { page } = Astro.props
+---
+
+<BaseLayout title="pk42ac">
+  <section class="post-list">
+    {page.data.map((post) => <PostCard post={post} />)}
+  </section>
+  <Pagination page={page} />
+</BaseLayout>

@@ -10,3 +10,7 @@ export async function getPublishedPosts(): Promise<Post[]> {
   const posts = await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft)
   return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 }
+
+/** 2026년 8월 16일 형식 */
+export const formatDate = (d: Date) =>
+  d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })
