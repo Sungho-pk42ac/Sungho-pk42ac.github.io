@@ -40,7 +40,12 @@ npm run test:e2e
 
 ## 글 쓰는 법
 
-`_template.md` 를 `src/content/posts/` 로 복사해 채운다. 그게 전부다.
+두 가지. 어느 쪽이든 `main` 에 커밋되면 자동 배포된다.
+
+**브라우저에서** — [app.pagescms.org](https://app.pagescms.org) 에 GitHub 로 로그인 → 이 레포 선택 → "글" 에서 작성.
+설정은 `.pages.yml` 하나뿐이고 서버는 없다. 이미지는 업로드하면 `src/content/posts/images/` 에 들어간다.
+
+**로컬에서** — `_template.md` 를 `src/content/posts/` 로 복사해 채우고 푸시. `npm run dev` 로 미리보기.
 
 ```markdown
 ---
