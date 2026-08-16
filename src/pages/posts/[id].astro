@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content'
+import RelatedPosts from '../../components/RelatedPosts.astro'
 import SeriesNav from '../../components/SeriesNav.astro'
 import Toc from '../../components/Toc.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
@@ -43,6 +44,7 @@ const { Content, headings } = await render(post)
       </div>
       <div data-pagefind-ignore>
         <SeriesNav post={post} />
+        <RelatedPosts post={post} />
       </div>
     </article>
     <aside class="post-layout__aside">

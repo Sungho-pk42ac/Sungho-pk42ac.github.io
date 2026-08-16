@@ -1,0 +1,26 @@
+---
+import { getPublishedPosts, type Post } from '../lib/posts'
+import { getRelatedPosts } from '../lib/related'
+
+interface Props {
+  post: Post
+}
+
+const related = getRelatedPosts(Astro.props.post, await getPublishedPosts())
+---
+
+{/* 겹치는 태그가 없으면 빈 상자를 남기지 않고 통째로 사라진다 */}
+{
+  related.length > 0 && (
+    <section class="related" aria-label="관련 글">
+      <h2 class="related__title">관련 글</h2>
+      <ul class="related__list">
+        {related.map((p) => (
+          <li>
+            <a href={`/posts/${p.id}/`}>{p.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

@@ -512,6 +512,31 @@ button {
   color: var(--primary1);
 }
 
+/* 관련 글 */
+.related {
+  margin-top: 3rem;
+}
+.related__title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text2);
+}
+.related__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.related__list li + li {
+  margin-top: 0.4rem;
+}
+.related__list a {
+  color: var(--text2);
+}
+.related__list a:hover {
+  color: var(--primary1);
+}
+
 /* 시리즈 이전/다음 — 값 대비로만 층을 나눈다 (그림자 없음) */
 .series-nav {
   margin-top: 4rem;
