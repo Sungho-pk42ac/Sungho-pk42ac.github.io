@@ -1,10 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content'
+import { render } from 'astro:content'
+import SeriesNav from '../../components/SeriesNav.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getPublishedPosts } from '../../lib/posts'
 import '../../styles/markdown.css'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts')
+  const posts = await getPublishedPosts()
   return posts.map((post) => ({
     params: { id: post.id },
     props: { post },
@@ -30,5 +32,6 @@ const dateText = post.data.date.toLocaleDateString('ko-KR', {
     <div class="post__body markdown-body">
       <Content />
     </div>
+    <SeriesNav post={post} />
   </article>
 </BaseLayout>

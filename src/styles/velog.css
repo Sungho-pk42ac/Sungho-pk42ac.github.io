@@ -256,6 +256,35 @@ button {
   margin-top: 3rem;
 }
 
+/* 시리즈 이전/다음 — 값 대비로만 층을 나눈다 (그림자 없음) */
+.series-nav {
+  margin-top: 4rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-element2);
+  border: 1px solid var(--border4);
+  border-radius: var(--border-radius-md);
+}
+.series-nav__title {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text3);
+}
+.series-nav__links {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9375rem;
+}
+.series-nav__links a {
+  color: var(--text2);
+}
+.series-nav__links a:hover {
+  color: var(--primary1);
+}
+.series-nav__next {
+  margin-left: auto;
+}
+
 @media screen and (max-width: 768px) {
   .post__title {
     font-size: 1.75rem;

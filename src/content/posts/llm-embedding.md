@@ -1,4 +1,11 @@
-# 5. 임베딩
+---
+title: 임베딩
+date: 2026-08-16
+description: 의미를 벡터로 다루기
+draft: true
+series: LLM 정리
+seriesOrder: 5
+---
 
 ## 한 줄 요약
 

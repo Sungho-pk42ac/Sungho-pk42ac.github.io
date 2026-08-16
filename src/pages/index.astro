@@ -1,11 +1,9 @@
 ---
 // 임시 목록. 카드·썸네일·페이지네이션이 붙은 진짜 홈은 #2에서 이 파일을 대체한다.
-import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { getPublishedPosts } from '../lib/posts'
 
-const posts = (await getCollection('posts')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-)
+const posts = await getPublishedPosts()
 ---
 
 <BaseLayout title="pk42ac">
