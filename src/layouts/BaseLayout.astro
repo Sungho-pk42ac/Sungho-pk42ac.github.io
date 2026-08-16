@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from '../components/ThemeToggle.astro'
+import { THEME_KEY } from '../lib/theme'
 import '../styles/velog.css'
 
 interface Props {
@@ -9,9 +11,13 @@ interface Props {
 const { title, description } = Astro.props
 ---
 
-<!-- 슬라이스 1은 라이트 고정. 토글과 선택 기억은 #3에서 붙인다. -->
 <html lang="ko" data-theme="light">
   <head>
+    {/* 스타일이 적용되기 전에 저장된 테마를 복원해야 라이트→다크 깜빡임이 없다. 그래서 head 맨 앞, 인라인. */}
+    <script is:inline define:vars={{ THEME_KEY }}>
+      // resolveTheme 과 같은 규칙: 'dark' 만 dark, 나머지(없음 포함)는 light
+      document.documentElement.dataset.theme = localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -22,6 +28,7 @@ const { title, description } = Astro.props
     <header class="site-header">
       <div class="site-header__inner">
         <a class="site-logo" href="/">pk42ac</a>
+        <ThemeToggle />
       </div>
     </header>
     <main class="site-main">

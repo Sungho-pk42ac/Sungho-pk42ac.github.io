@@ -1,0 +1,29 @@
+---
+// 라이트/다크 토글. 현재 테마는 <html data-theme> 이 진실이고, 아이콘은 CSS 가 그 값을 보고 바꾼다.
+---
+
+<button class="theme-toggle" type="button" aria-label="테마 전환">
+  <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2" />
+    <path
+      d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+  <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <path d="M21 13.5A8.5 8.5 0 0 1 10.5 3a7 7 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" />
+  </svg>
+</button>
+
+<script>
+  import { THEME_KEY } from '../lib/theme'
+
+  document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+    // head 인라인 스크립트가 항상 data-theme 을 박아두므로 값이 없는 경우는 없다
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.dataset.theme = next
+    localStorage.setItem(THEME_KEY, next)
+  })
+</script>
