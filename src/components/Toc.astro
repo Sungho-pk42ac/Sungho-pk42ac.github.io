@@ -1,0 +1,24 @@
+---
+import type { MarkdownHeading } from 'astro'
+
+interface Props {
+  headings: MarkdownHeading[]
+}
+
+// h2/h3 만. h4 이하는 목차에 넣으면 소음이 된다
+const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3)
+---
+
+{
+  items.length > 0 && (
+    <nav class="toc" aria-label="목차">
+      <ul class="toc__list">
+        {items.map((h) => (
+          <li class:list={['toc__item', { 'toc__item--h3': h.depth === 3 }]}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
