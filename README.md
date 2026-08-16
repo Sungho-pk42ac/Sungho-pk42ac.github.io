@@ -2,6 +2,8 @@
 
 LLM 공부하며 남기는 기록. [velog](https://velog.io) 디자인을 따르는 Astro 정적 블로그.
 
+**https://sungho-pk42ac.github.io/** — `main` 에 푸시하면 GitHub Actions 가 빌드해 배포한다.
+
 ## 로컬에서 보기
 
 ```bash

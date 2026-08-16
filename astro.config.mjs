@@ -2,8 +2,8 @@ import sitemap from '@astrojs/sitemap'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  // 커스텀 도메인 확정 시 교체한다 (이슈 #7). RSS·sitemap·OG의 절대 URL이 이 값을 쓴다.
-  site: 'https://example.com',
+  // RSS·sitemap·OG 의 절대 URL 이 이 값을 쓴다. 커스텀 도메인을 붙이면 여기만 바꾼다.
+  site: 'https://sungho-pk42ac.github.io',
   // 정적 호스팅은 디렉터리 라우트를 /x/ 로 서빙한다. 내부 링크·paginate URL 을 전부 여기에 맞춘다.
   trailingSlash: 'always',
 
