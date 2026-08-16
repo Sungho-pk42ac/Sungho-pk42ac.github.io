@@ -1,0 +1,33 @@
+---
+import { formatDate, type Post } from '../lib/posts'
+
+interface Props {
+  post: Post
+}
+
+const { post } = Astro.props
+const { title, date, description, tags, thumbnail } = post.data
+const href = `/posts/${post.id}/`
+---
+
+<article class="post-card">
+  {
+    thumbnail && (
+      <a href={href} class="post-card__thumb">
+        <img src={thumbnail.src} alt="" width={thumbnail.width} height={thumbnail.height} />
+      </a>
+    )
+  }
+  <div class="post-card__body">
+    <h2 class="post-card__title"><a href={href}>{title}</a></h2>
+    {description && <p class="post-card__desc">{description}</p>}
+    <div class="post-card__meta">
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      {tags.length > 0 && (
+        <ul class="post-card__tags">
+          {tags.map((t) => <li>{t}</li>)}
+        </ul>
+      )}
+    </div>
+  </div>
+</article>

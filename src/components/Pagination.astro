@@ -1,0 +1,22 @@
+---
+import type { Page } from 'astro'
+
+interface Props {
+  page: Page
+}
+
+const { page } = Astro.props
+const { prev, next } = page.url
+---
+
+{
+  (prev || next) && (
+    <nav class="pagination" aria-label="페이지 이동">
+      {prev ? <a rel="prev" href={prev}>← 이전</a> : <span />}
+      <span class="pagination__current">
+        {page.currentPage} / {page.lastPage}
+      </span>
+      {next ? <a rel="next" href={next}>다음 →</a> : <span />}
+    </nav>
+  )
+}
