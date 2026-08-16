@@ -229,6 +229,29 @@ button {
   color: var(--text1);
 }
 
+/* 테마 토글 — 아이콘 버튼. 현재 테마와 반대 아이콘을 보여준다 */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--element-height-md);
+  height: var(--element-height-md);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--text2);
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--slight-layer);
+  color: var(--text1);
+}
+[data-theme='light'] .theme-toggle__sun,
+[data-theme='dark'] .theme-toggle__moon {
+  display: none;
+}
+
 .site-main {
   max-width: var(--content-width);
   margin: 0 auto;
