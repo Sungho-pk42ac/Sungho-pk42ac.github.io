@@ -1,4 +1,11 @@
-# 2. 로컬 LLM
+---
+title: 로컬 LLM
+date: 2026-08-16
+description: 내 컴퓨터에서 모델 돌리기
+draft: true
+series: LLM 정리
+seriesOrder: 2
+---
 
 ## 한 줄 요약
 

@@ -1,0 +1,28 @@
+---
+import { getPublishedPosts, type Post } from '../lib/posts'
+import { getSeriesNeighbors } from '../lib/series'
+
+interface Props {
+  post: Post
+}
+
+const { post } = Astro.props
+// getCollection 은 빌드 중 캐시되므로 페이지마다 불러도 비용이 없다
+const { prev, next } = getSeriesNeighbors(post, await getPublishedPosts())
+---
+
+{
+  post.data.series && (
+    <nav class="series-nav" aria-label="시리즈 이동">
+      <p class="series-nav__title">{post.data.series}</p>
+      <div class="series-nav__links">
+        {prev && <a href={`/posts/${prev.id}/`}>← {prev.data.title}</a>}
+        {next && (
+          <a class="series-nav__next" href={`/posts/${next.id}/`}>
+            {next.data.title} →
+          </a>
+        )}
+      </div>
+    </nav>
+  )
+}

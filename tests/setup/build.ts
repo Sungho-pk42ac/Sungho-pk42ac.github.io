@@ -6,8 +6,10 @@ import { execSync } from 'node:child_process'
  * outDir 은 astro build 가 스스로 비운다.
  */
 export default function setup() {
-  execSync('npx astro build --outDir .test-dist', {
-    stdio: 'inherit',
-    env: { ...process.env, POSTS_DIR: 'tests/fixtures/posts' },
-  })
+  const env = { ...process.env, POSTS_DIR: 'tests/fixtures/posts' }
+  // vitest 는 자기 import.meta.env 를 흉내내려고 process.env 에 DEV="1", PROD="", MODE="test",
+  // NODE_ENV="test", BASE_URL="/" 를 넣는다. Astro 는 서버 코드의 import.meta.env 에 process.env 를
+  // 합치므로 그대로 물려주면 프로덕션 빌드가 dev 처럼 굴어 draft 가 새어 나온다. 전부 지운다.
+  for (const k of ['DEV', 'PROD', 'SSR', 'MODE', 'NODE_ENV', 'BASE_URL', 'TEST', 'VITEST']) delete env[k]
+  execSync('npx astro build --outDir .test-dist', { stdio: 'inherit', env })
 }

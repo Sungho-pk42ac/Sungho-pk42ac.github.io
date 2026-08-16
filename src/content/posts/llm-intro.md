@@ -1,4 +1,11 @@
-# 1. LLM 소개
+---
+title: LLM 소개
+date: 2026-08-16
+description: LLM이 무엇이고 어떻게 동작하는가
+draft: true
+series: LLM 정리
+seriesOrder: 1
+---
 
 ## 한 줄 요약
 

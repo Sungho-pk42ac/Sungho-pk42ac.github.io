@@ -38,13 +38,16 @@ npm run test:e2e
 
 ## 글 쓰는 법
 
-`src/content/posts/` 에 마크다운 파일을 하나 만든다. 그게 전부다.
+`_template.md` 를 `src/content/posts/` 로 복사해 채운다. 그게 전부다.
 
 ```markdown
 ---
 title: 토크나이저가 한글을 쪼개는 방식
 date: 2026-08-20
 description: 목록과 검색에 쓰이는 한 줄 요약
+draft: true          # 다 쓰면 지운다. 사이트에 안 올라감 (dev 에선 보임)
+series: LLM 정리     # 선택. 순서 있는 묶음 — 글 하단에 이전/다음 화가 뜬다
+seriesOrder: 4
 ---
 
 본문…

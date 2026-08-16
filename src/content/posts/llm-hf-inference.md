@@ -1,4 +1,11 @@
-# 3. HuggingFace 모델 다운로드 & 추론
+---
+title: HuggingFace 모델 다운로드 & 추론
+date: 2026-08-16
+description: transformers로 모델 받아서 추론하기
+draft: true
+series: LLM 정리
+seriesOrder: 3
+---
 
 ## 한 줄 요약
 

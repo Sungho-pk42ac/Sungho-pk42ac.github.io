@@ -1,4 +1,11 @@
-# 4. 토크나이저
+---
+title: 토크나이저
+date: 2026-08-16
+description: 텍스트가 숫자로 바뀌는 과정
+draft: true
+series: LLM 정리
+seriesOrder: 4
+---
 
 ## 한 줄 요약
 
