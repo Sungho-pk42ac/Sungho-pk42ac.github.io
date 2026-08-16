@@ -1,0 +1,64 @@
+# Pages CMS (https://pagescms.org) — 브라우저 글쓰기 설정.
+# app.pagescms.org 에 GitHub 로그인 → 이 레포 선택 → 글 작성 → 저장하면 main 에 커밋 → 자동 배포.
+# 필드는 src/content.config.ts 의 스키마와 1:1 이어야 한다 (tests/unit/pages-cms.test.ts 가 지킨다).
+
+media:
+  # 글 옆 images/ 에 두고 상대 경로로 넣는다 — Astro 가 frontmatter·본문 양쪽에서 최적화하는 유일한 형태
+  input: src/content/posts/images
+  output: images
+  categories: [image]
+  rename: safe
+
+content:
+  - name: posts
+    label: 글
+    type: collection
+    path: src/content/posts
+    filename: "{primary}.md"          # 파일명 = 슬러그 = /posts/{slug}/ 주소. 영문 소문자-하이픈 권장
+    view:
+      fields: [title, date, draft, tags]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: date
+        label: 날짜
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: description
+        label: 한 줄 요약
+        description: 목록·검색·공유 카드에 쓰인다
+        type: string
+        options:
+          maxlength: 160
+      - name: tags
+        label: 태그
+        type: string
+        list: true
+      - name: thumbnail
+        label: 썸네일
+        description: 없으면 카드가 텍스트만으로 접힌다
+        type: image
+      - name: draft
+        label: 초안 (사이트에 안 올림)
+        type: boolean
+        default: true
+      - name: series
+        label: 시리즈
+        description: 순서 있는 묶음 이름. 아래 순서와 같이 쓴다
+        type: string
+      - name: seriesOrder
+        label: 시리즈 순서
+        type: number
+      - name: body
+        label: 본문 (마크다운)
+        type: code
+        options:
+          language: markdown
