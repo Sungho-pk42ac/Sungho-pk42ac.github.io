@@ -24,5 +24,7 @@ export function readText(routePath: string): string {
 
 /** 산출물 HTML을 파싱해 루트 요소를 돌려준다 */
 export function readHtml(routePath: string): HTMLElement {
-  return parse(readText(routePath))
+  // node-html-parser 는 기본으로 <pre> 안을 텍스트로 두고 자식을 안 만든다.
+  // 코드블록의 .token 을 셀렉터로 잡으려면 pre 는 파싱해야 한다.
+  return parse(readText(routePath), { blockTextElements: { script: true, noscript: true, style: true } })
 }

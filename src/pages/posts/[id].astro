@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content'
 import SeriesNav from '../../components/SeriesNav.astro'
+import Toc from '../../components/Toc.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { formatDate, getPublishedPosts } from '../../lib/posts'
 import '../../styles/markdown.css'
@@ -14,19 +15,46 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
-const { Content } = await render(post)
-
+const { Content, headings } = await render(post)
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <article>
-    <h1 class="post__title">{post.data.title}</h1>
-    <p class="post__date">
-      <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-    </p>
-    <div class="post__body markdown-body">
-      <Content />
-    </div>
-    <SeriesNav post={post} />
-  </article>
+  <div class="post-layout">
+    <article>
+      <h1 class="post__title">{post.data.title}</h1>
+      <p class="post__date">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      </p>
+      <div class="post__body markdown-body">
+        <Content />
+      </div>
+      <SeriesNav post={post} />
+    </article>
+    <aside class="post-layout__aside">
+      <Toc headings={headings} />
+    </aside>
+  </div>
 </BaseLayout>
+
+<script>
+  // 스크롤 스파이 — 뷰포트 상단 20% 지점을 지난 제목 중 가장 아래 것의 목차 항목에 .is-active
+  const pairs = [...document.querySelectorAll<HTMLAnchorElement>('nav.toc a')]
+    .map((a) => [document.getElementById(decodeURIComponent(a.hash.slice(1))), a] as const)
+    .filter((p): p is readonly [HTMLElement, HTMLAnchorElement] => p[0] !== null)
+  if (pairs.length) {
+    let active: HTMLAnchorElement | undefined
+    const update = () => {
+      // offsetTop 은 position:relative 조상 기준이라 문서 좌표가 아니다. 뷰포트 좌표로 비교한다
+      const line = window.innerHeight * 0.2
+      const [, a] = pairs.filter(([h]) => h.getBoundingClientRect().top <= line).at(-1) ?? pairs[0]
+      if (a === active) return
+      active?.classList.remove('is-active')
+      a.classList.add('is-active')
+      active = a
+    }
+    // IntersectionObserver 는 교차 '변화'만 알려서 앵커 점프(목차 클릭)처럼 띠를 한 번에 건너뛰면 안 울린다.
+    // 제목 열몇 개 rect 계산은 싸므로 그냥 scroll 마다 돈다
+    addEventListener('scroll', update, { passive: true })
+    update()
+  }
+</script>

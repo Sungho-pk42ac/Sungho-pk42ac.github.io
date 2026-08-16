@@ -260,6 +260,58 @@ button {
 
 /* ── 글 ──────────────────────────────────────────────── */
 
+/* 본문 768 + 우측 목차. 목차는 본문 컬럼 밖 여백에 떠 있고, 1024px 미만이면 숨긴다 */
+.post-layout {
+  position: relative;
+}
+.post-layout__aside {
+  display: none;
+}
+@media screen and (min-width: 1024px) {
+  .post-layout__aside {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 3rem);
+    width: 220px;
+    height: 100%;
+  }
+}
+.toc {
+  position: sticky;
+  top: 6rem;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border4);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.toc__item + .toc__item {
+  margin-top: 0.35rem;
+}
+.toc__item--h3 {
+  padding-left: 0.75rem;
+}
+.toc a {
+  display: block;
+  color: var(--text3);
+  word-break: keep-all;
+}
+.toc a:hover,
+.toc a.is-active {
+  color: var(--text1);
+}
+.toc a.is-active {
+  transform: scale(1.05);
+  transform-origin: left center;
+}
+
 .post__title {
   margin: 0;
   font-size: 2.5rem;
