@@ -36,6 +36,7 @@ describe('PostCard', () => {
 
   it('썸네일이 있으면 <img> 가 있다', async () => {
     const thumbnail = { src: '/_astro/sample.png', width: 4, height: 4, format: 'png' }
-    expect((await renderCard(post({ thumbnail }))).querySelector('img')?.getAttribute('src')).toBe('/_astro/sample.png')
+    // <Image> 는 컨테이너에서 /_image/?href=... 엔드포인트 URL 을 낸다. 원본을 가리키는지만 본다
+    expect((await renderCard(post({ thumbnail }))).querySelector('img')?.getAttribute('src')).toContain('sample.png')
   })
 })
