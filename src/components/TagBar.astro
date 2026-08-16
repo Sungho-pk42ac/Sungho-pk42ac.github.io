@@ -1,0 +1,24 @@
+---
+import { getPublishedPosts } from '../lib/posts'
+import { getTagCounts, tagHref } from '../lib/tags'
+
+interface Props {
+  /** 현재 보고 있는 태그. 없으면 "전체" 가 활성 */
+  active?: string
+}
+
+const { active } = Astro.props
+const tags = getTagCounts(await getPublishedPosts())
+---
+
+{/* JS 없는 링크 필터 — 칩은 태그 페이지로, "전체" 는 홈으로 간다 */}
+<nav class="tag-bar" aria-label="태그">
+  <a href="/" class:list={{ 'is-active': !active }}>전체</a>
+  {
+    tags.map(({ tag }) => (
+      <a href={tagHref(tag)} class:list={{ 'is-active': tag === active }}>
+        {tag}
+      </a>
+    ))
+  }
+</nav>
