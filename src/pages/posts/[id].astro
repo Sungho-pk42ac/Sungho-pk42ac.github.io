@@ -21,7 +21,8 @@ const { Content, headings } = await render(post)
 
 <BaseLayout title={post.data.title} description={post.data.description} type="article">
   <div class="post-layout">
-    <article>
+    {/* data-pagefind-body: 검색 색인은 글 본문(제목 포함)만. 헤더·목차·시리즈 내비는 제외 */}
+    <article data-pagefind-body>
       <h1 class="post__title">{post.data.title}</h1>
       <p class="post__date">
         <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
@@ -40,7 +41,9 @@ const { Content, headings } = await render(post)
       <div class="post__body markdown-body">
         <Content />
       </div>
-      <SeriesNav post={post} />
+      <div data-pagefind-ignore>
+        <SeriesNav post={post} />
+      </div>
     </article>
     <aside class="post-layout__aside">
       <Toc headings={headings} />

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",
     "test": "npm run test:unit && npm run test:e2e",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@playwright/test": "^1.62.1",
     "node-html-parser": "^9.0.1",
+    "pagefind": "^1.5.2",
     "vitest": "^4.1.10"
   }
 }
