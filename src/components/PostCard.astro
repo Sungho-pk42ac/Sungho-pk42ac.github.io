@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import { formatDate, type Post } from '../lib/posts'
+import { tagHref } from '../lib/tags'
 
 interface Props {
   post: Post
@@ -27,7 +28,11 @@ const href = `/posts/${post.id}/`
       <time datetime={date.toISOString()}>{formatDate(date)}</time>
       {tags.length > 0 && (
         <ul class="post-card__tags">
-          {tags.map((t) => <li>{t}</li>)}
+          {tags.map((t) => (
+            <li>
+              <a href={tagHref(t)}>{t}</a>
+            </li>
+          ))}
         </ul>
       )}
     </div>

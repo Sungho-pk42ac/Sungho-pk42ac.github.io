@@ -1,0 +1,25 @@
+---
+import PostCard from '../../components/PostCard.astro'
+import TagBar from '../../components/TagBar.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getPublishedPosts } from '../../lib/posts'
+import { getTagCounts } from '../../lib/tags'
+
+// ponytail: 태그 페이지는 페이지네이션 없이 전부. 한 태그가 수십 개 넘으면 [...page] 처럼 paginate
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts()
+  return getTagCounts(posts).map(({ tag }) => ({
+    params: { tag },
+    props: { tag, posts: posts.filter((p) => p.data.tags.includes(tag)) },
+  }))
+}
+
+const { tag, posts } = Astro.props
+---
+
+<BaseLayout title={`#${tag} — pk42ac`} description={`${tag} 태그가 달린 글`}>
+  <TagBar active={tag} />
+  <section class="post-list">
+    {posts.map((post) => <PostCard post={post} />)}
+  </section>
+</BaseLayout>

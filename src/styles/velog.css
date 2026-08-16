@@ -331,6 +331,33 @@ button {
   margin-top: 3rem;
 }
 
+/* ── 태그 바 (홈·태그 페이지 상단) ─────────────────────── */
+.tag-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tag-bar a {
+  flex: none;
+  padding: 0 1rem;
+  height: var(--element-height-sm);
+  line-height: var(--element-height-sm);
+  border-radius: 1.125rem;
+  background: var(--bg-element2);
+  color: var(--text2);
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+.tag-bar a:hover {
+  background: var(--bg-element3);
+}
+.tag-bar a.is-active {
+  background: var(--primary1);
+  color: var(--button-text);
+  font-weight: 700;
+}
 /* ── 홈 글 목록 ────────────────────────────────────────
  * velog FlatPostCard 계열: 카드끼리 구분선, 그림자 없음. 썸네일은 있을 때만 위에. */
 
@@ -386,7 +413,8 @@ button {
   color: var(--text3);
 }
 
-.post-card__tags {
+.post-card__tags,
+.post__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -394,7 +422,8 @@ button {
   padding: 0;
   list-style: none;
 }
-.post-card__tags li {
+.post-card__tags li,
+.post__tags li {
   padding: 0 0.75rem;
   height: 1.75rem;
   line-height: 1.75rem;
@@ -402,6 +431,13 @@ button {
   background: var(--bg-tag);
   color: var(--primary1);
   font-size: 0.875rem;
+}
+.post-card__tags a,
+.post__tags a {
+  color: inherit;
+}
+.post__tags {
+  margin-top: 1rem;
 }
 
 /* 페이지 이동 */
