@@ -1,3 +1,4 @@
+import sitemap from '@astrojs/sitemap'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
@@ -5,6 +6,9 @@ export default defineConfig({
   site: 'https://example.com',
   // 정적 호스팅은 디렉터리 라우트를 /x/ 로 서빙한다. 내부 링크·paginate URL 을 전부 여기에 맞춘다.
   trailingSlash: 'always',
+
+  // draft 는 애초에 라우트가 안 생기므로 filter 불필요
+  integrations: [sitemap()],
 
   markdown: {
     // 기본값 shiki는 색을 인라인 스타일로 박아서 CSS 변수로 테마 전환이 안 된다.
