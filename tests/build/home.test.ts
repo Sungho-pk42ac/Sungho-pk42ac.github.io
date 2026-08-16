@@ -1,14 +1,10 @@
-import { readdirSync, readFileSync } from 'node:fs'
 import { expect, it } from 'vitest'
+import { publishedSlugs } from '../helpers/fixtures'
 import { readHtml } from '../helpers/html'
 
 /** 페이지의 글 카드 목록 */
 const cards = (route: string) => readHtml(route).querySelectorAll('.post-card')
-
-/** 픽스처 중 발행 글 수 — 픽스처가 늘어도 테스트가 따라온다 */
-const published = readdirSync('tests/fixtures/posts')
-  .filter((f) => f.endsWith('.md'))
-  .filter((f) => !/^draft:\s*true/m.test(readFileSync(`tests/fixtures/posts/${f}`, 'utf-8'))).length
+const published = publishedSlugs.length
 
 it('홈에 카드가 정확히 10개, 최신 글이 첫 번째', () => {
   const list = cards('/')
