@@ -12,4 +12,6 @@ export default function setup() {
   // 합치므로 그대로 물려주면 프로덕션 빌드가 dev 처럼 굴어 draft 가 새어 나온다. 전부 지운다.
   for (const k of ['DEV', 'PROD', 'SSR', 'MODE', 'NODE_ENV', 'BASE_URL', 'TEST', 'VITEST']) delete env[k]
   execSync('npx astro build --outDir .test-dist', { stdio: 'inherit', env })
+  // 실제 build 스크립트와 같은 후처리 — 검색 색인
+  execSync('npx pagefind --site .test-dist', { stdio: 'inherit', env })
 }

@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro'
 import { THEME_KEY } from '../lib/theme'
+import '../styles/search.css'
 import '../styles/velog.css'
 
 interface Props {
@@ -41,6 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
         <a class="site-logo" href="/">pk42ac</a>
         <nav class="site-nav" aria-label="사이트">
           <a href="/archive/">아카이브</a>
+          <pagefind-modal-trigger></pagefind-modal-trigger>
           <ThemeToggle />
         </nav>
       </div>
@@ -48,5 +50,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
     <main class="site-main">
       <slot />
     </main>
+    {/* 검색 — 빌드 후 pagefind 가 /pagefind/ 에 색인과 UI 를 만든다. dev 에서는 색인이 없어 비어 보인다 */}
+    <pagefind-modal></pagefind-modal>
+    <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
+    <script src="/pagefind/pagefind-component-ui.js" type="module" is:inline></script>
   </body>
 </html>

@@ -1,0 +1,21 @@
+/* Pagefind 컴포넌트 UI 를 velog 토큰에 매핑. 그림자는 velog 규칙대로 없앤다 */
+:root {
+  --pf-font: inherit;
+  --pf-background: var(--bg-element1);
+  --pf-text: var(--text1);
+  --pf-text-secondary: var(--text2);
+  --pf-text-muted: var(--text3);
+  --pf-border: var(--border4);
+  --pf-border-focus: var(--primary1);
+  --pf-outline-focus: var(--primary1);
+  --pf-hover: var(--bg-element2);
+  --pf-mark: var(--teal1);
+  --pf-border-radius: var(--border-radius-md);
+  --pf-modal-backdrop: var(--opaque-layer);
+  --pf-shadow-sm: none;
+  --pf-shadow-md: none;
+  --pf-shadow-lg: none;
+}
+[data-theme='dark'] {
+  --pf-mark: var(--teal9);
+}
